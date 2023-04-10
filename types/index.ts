@@ -7,9 +7,9 @@ export type PGEssay = {
   chunks: PGChunk[]; //chunk is a list of tokens, save in database
 };
 export type PGChunk = {
-  eassy_title: string;
-  eassy_url: string;
-  eassy_date: string;
+  essay_title: string;
+  essay_url: string;
+  essay_date: string;
   content: string;
   content_tokens: number;
   embedding: number[];
