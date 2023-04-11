@@ -27,14 +27,25 @@ const generateEmbeddings = async (essays: PGEssay[]) => {
         input: chunk.content,
       });
       const [{ embedding }] = embeddingResponse.data.data;
-      const { data, error } = await supabase.from("paul_graham").insert({
-        eassy_title: chunk.essay_title,
-        eassy_url: chunk.essay_url,
-        eassy_date: chunk.essay_date,
-        content: chunk.content,
-        content_tokens: chunk.content_tokens,
-        embedding: embedding,
-      });
+      const { data, error } = await supabase
+        .from("paul_graham")
+        .insert({
+          eassy_title: chunk.essay_title,
+          eassy_url: chunk.essay_url,
+          eassy_date: chunk.essay_date,
+          content: chunk.content,
+          content_tokens: chunk.content_tokens,
+          embedding: embedding,
+        })
+        .select("*");
+
+      if (error) {
+        console.log("error");
+      } else {
+        console.log("saved", i, j);
+      }
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // promise works for it has error when you embedding stuff, might be read limited thing. it will wait 1 second and try again
     }
   }
 };
