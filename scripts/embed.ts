@@ -14,7 +14,7 @@ const generateEmbeddings = async (essays: PGEssay[]) => {
 
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY! //why !, because it's not null
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
   );
   for (let i = 0; i < essays.length; i++) {
     const essay = essays[i];
@@ -30,9 +30,9 @@ const generateEmbeddings = async (essays: PGEssay[]) => {
       const { data, error } = await supabase
         .from("paul_graham")
         .insert({
-          eassy_title: chunk.essay_title,
-          eassy_url: chunk.essay_url,
-          eassy_date: chunk.essay_date,
+          essay_title: chunk.essay_title,
+          essay_url: chunk.essay_url,
+          essay_date: chunk.essay_date,
           content: chunk.content,
           content_tokens: chunk.content_tokens,
           embedding: embedding,

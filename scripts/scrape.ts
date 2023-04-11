@@ -111,9 +111,9 @@ const getChunks = async (essay: PGEssay) => {
   }
   const essayChunks: PGChunk[] = essayTextChunks.map((chunkText, i) => {
     const chunk: PGChunk = {
-      eassy_title: title,
-      eassy_url: url,
-      eassy_date: date,
+      essay_title: title,
+      essay_url: url,
+      essay_date: date,
       content: chunkText,
       content_tokens: encode(chunkText).length,
       embedding: [],
