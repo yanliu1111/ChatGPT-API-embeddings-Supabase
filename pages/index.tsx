@@ -1,4 +1,5 @@
 import { PGChunk } from "@/types";
+import endent from "endent";
 import Head from "next/head";
 import { useState } from "react";
 
@@ -9,6 +10,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
 
   const handleAnswer = async () => {
+    setLoading(true);
     const searchResponse = await fetch("/api/search", {
       method: "POST",
       headers: {
@@ -21,7 +23,41 @@ export default function Home() {
     }
     const results: PGChunk[] = await searchResponse.json();
     setChunk(results);
-    console.log(results);
+    // console.log(results);
+
+    const prompt = endent`
+    Use the following text to answer the question: ${query}
+    ${results.map((chunk) => chunk.content).join("\n")}
+    `;
+    // console.log(prompt);
+
+    const answerResponse = await fetch("/api/answer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ prompt }),
+    });
+    if (!answerResponse.ok) {
+      return;
+    }
+
+    const data = answerResponse.body;
+    if (!data) {
+      return;
+    }
+
+    const reader = data.getReader();
+    const decoder = new TextDecoder();
+    let done = false;
+    // when stream is done, instead return false here, it will return true in the end, the let done will be turn to true, and the while loop will be break. Wrap up, we will not get infinite loop here.
+    while (!done) {
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+      const chunkValue = decoder.decode(value);
+      setAnswer((pre) => pre + chunkValue);
+    }
+    setLoading(false);
   };
 
   return (
@@ -49,6 +85,9 @@ export default function Home() {
         >
           Submit
         </button>
+        <div className="mt-4">
+          {loading ? <div>Loading ... </div> : <div>{answer}</div>}
+        </div>
       </div>
     </>
   );
