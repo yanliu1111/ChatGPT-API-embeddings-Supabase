@@ -16,6 +16,8 @@ OpenAI embeddings; Supabase; Next.js; Data search and similarity functions build
 
 This tutorial demonstrates the step-by-step process of scraping and embedding text (include fetching, cleaning, and storing data), creating datasets, streaming data, and building a basic user interface (search and chat interfaces).
 
+More details about work flow, you can check tutorial GitHub repo [here](https://github.com/mckaywrigley/paul-graham-gpt)
+
 ## What your need?
 
 Create a .env.local file in the root of the repo with the following variables:
@@ -26,8 +28,6 @@ OPENAI_API_KEY=
 NEXT_PUBLIC_SUPABASE_URL=
 SUPABASE_SERVICE_ROLE_KEY=
 ```
-
-More details about work flow, you can check tutorial GitHub repo [here](https://github.com/mckaywrigley/paul-graham-gpt)
 
 For those curious about costs, the GPT embeddings charge was economical for this project. With approximately 3387 records across 34 pages in a Supabase table, the total cost was less than 20 cents (Canadian dollars) and Supabase is free for 2 projects! 💰
 
