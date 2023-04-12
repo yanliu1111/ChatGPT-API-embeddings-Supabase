@@ -4,7 +4,7 @@
 
 Learned from [RabbitHoleSyndrome](https://www.youtube.com/watch?v=Yhtjd7yGGGA&t=466s&ab_channel=RabbitHoleSyndrome) YouTube channel for introducing me to this new tech right from the beginning. I finally have the opportunity to work on and gain a deeper understanding of how this "magic" tech works behind the scenes this time.
 
-It is basic features for scrap text build, learn from [mckaywrigley](https://www.youtube.com/watch?v=RM-v7zoYQo0&t=1060s) YouTube channel. Also there is advanced version (more UI refined) in his GitHub repo [here](https://github.com/mckaywrigley/paul-graham-gpt).
+It is basic tools build for scraping & embedding text, learning from [mckaywrigley](https://www.youtube.com/watch?v=RM-v7zoYQo0&t=1060s) YouTube channel. Also there is advanced version (more UI refined) in his GitHub repo [here](https://github.com/mckaywrigley/paul-graham-gpt).
 
 This is just the beginning journey in using base embeddings. With the techniques you've learned so far, you now have a powerful set of tools that can be applied to create diverse datasets. You can scrape text from various sources such as PDFs, websites, or even transcribe audio from podcasts or YouTube videos. **the possibilities are endless✨** Use our imagination.🙄🧐
 
